@@ -41,34 +41,47 @@ namespace SodaMachine
             {
                 buyMenu();
             }
+
+            else
+
+            {
+                Console.WriteLine("That is not a valid option in this menu.");
+                runMenu();
+            }
             
         }
 
         public decimal buyMenu()
         {
-            
-            Console.WriteLine("Press 1 to insert quarters, 2 to insert dimes, 3 to insert nickels, and 4 to insert pennies");
+
+            Console.WriteLine("Press 1 to insert quarters, 2 to insert dimes, 3 to insert nickels, 4 to insert pennies, or 5 to return to main menu.");
             string choice = Console.ReadLine();
-            if(choice == "1")
+            if (choice == "1")
             {
                 int depositedQuarters = addQuarters();
                 decimal quarterWorth = 0.25m;
                 decimal depositedQuartersValue = (depositedQuarters * quarterWorth);
                 deposit += depositedQuartersValue;
                 Console.WriteLine("Total inserted: " + deposit);
-                Console.WriteLine("Press 1 to add more money");
+                Console.WriteLine("Press 1 to add more money, press any other key to return to main menu.");
                 string addMoreMoneyChoice = Console.ReadLine();
-                    if (addMoreMoneyChoice == "1")
+                if (addMoreMoneyChoice == "1")
 
-                    {
+                {
                     buyMenu();
-                    }
+                }
+
+                else
+
+                {
+                    runMenu();
+                }
 
                 return depositedQuartersValue;
 
             }
 
-            else if(choice == "2")
+            else if (choice == "2")
 
             {
 
@@ -79,7 +92,7 @@ namespace SodaMachine
                 Console.WriteLine("Total inserted: " + deposit);
                 Console.WriteLine("Press 1 to add more money");
                 string addMoreMoneyChoice = Console.ReadLine();
-                    if (addMoreMoneyChoice == "1")
+                if (addMoreMoneyChoice == "1")
 
                 {
                     buyMenu();
@@ -130,15 +143,24 @@ namespace SodaMachine
 
             }
 
+            else if (choice == "5")
+
+            {
+                
+                 runMenu();
+                 return 0;
+            }
+
             else
 
             {
+
                 Console.WriteLine("That is not a valid option in this menu");
                 buyMenu();
-                
+                return 0;
             }
 
-            return 0;
+            
         }
      
         public List<Quarter> stockQuarters()
@@ -151,7 +173,7 @@ namespace SodaMachine
                 quarters.Add(quarter);
                 coins.Add(quarter);
 
-               // depositedCoins.Add(quarter);
+               
 
             }
 
@@ -291,7 +313,22 @@ namespace SodaMachine
         public int addQuarters()
         {
             Console.WriteLine("How many quarters are you putting in the machine?");
-            int addition = int.Parse(Console.ReadLine());
+            int addition = 0;
+
+            try
+
+            {
+
+                addition = int.Parse(Console.ReadLine());
+
+            }
+                  catch (FormatException)
+              {
+                    Console.WriteLine("That is not a valid option in this menu.");
+                    buyMenu();
+
+              }
+           // int addition = int.Parse(Console.ReadLine());
 
             for (int newQuarters = 0; newQuarters < addition; newQuarters++)
 
