@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SodaMachine
 {
-    class Grape
+    class Grape : Soda
     {
         public decimal price = .60m;
     }

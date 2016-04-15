@@ -8,6 +8,6 @@ namespace SodaMachine
 {
     public abstract class Soda
     {
-
+        
     }
 }

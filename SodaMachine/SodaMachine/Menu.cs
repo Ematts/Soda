@@ -4,21 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SodaMachine
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Machine machine = new Machine();
-            machine.runMenu();
-            
+//namespace SodaMachine
+//{
+//    public class Menu
+//    {
+//        Machine machine = new Machine();
+       
+//        public void runMenu ()
+//        {
+//            Console.WriteLine("Press 1 to buy soda");
+//            int menuChoice = 0;
 
-            
-            Console.ReadKey();
-        }
-    }
-}
+//            try
+//            {
+
+//                menuChoice = int.Parse(Console.ReadLine());
+
+//            }
+//            catch (FormatException)
+//            {
+//                Console.WriteLine("That is not a valid option in this menu.");
+//                runMenu();
+
+//            }
+
+//            if (menuChoice == 1)
+//            {
+//                machine.InputMoney();
+//            }
+//        }
+//    }
+//}
 
 
 //Using proper code design, write a SodaMachine class that accepts coins as payment, returns coins from its limited register as change, and dispenses soda cans from its limited inventory.

@@ -8,7 +8,7 @@ namespace SodaMachine
 {
     public abstract class Coin
     {
-
+        
     }
 }
 

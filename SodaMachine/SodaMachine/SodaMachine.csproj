@@ -48,6 +48,7 @@
     <Compile Include="Grape.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Meat.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Nickel.cs" />
     <Compile Include="Orange.cs" />
     <Compile Include="Penny.cs" />

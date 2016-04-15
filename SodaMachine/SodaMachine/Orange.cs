@@ -8,6 +8,7 @@ namespace SodaMachine
 {
     class Orange : Soda
     {
-        public decimal worth = .35m;
+        public decimal price = .35m;
     }
 }
+

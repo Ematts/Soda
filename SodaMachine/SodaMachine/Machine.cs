@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SodaMachine
 {
-    class Machine
+   class Machine
     {
         List<Quarter> quarters = new List<Quarter>();
         List<Dime> dimes = new List<Dime>();
@@ -15,6 +15,11 @@ namespace SodaMachine
         List<Orange> oranges = new List<Orange>();
         List<Grape> grapes = new List<Grape>();
         List<Meat> meats = new List<Meat>();
+        List<Coin> coins = new List<Coin>();
+        List<Soda> sodas = new List<Soda>();
+        decimal deposit = 0m;
+
+
 
         public Machine()
         {
@@ -27,6 +32,115 @@ namespace SodaMachine
             meats = stockMeats();
         }
 
+
+        public void runMenu()
+        {
+            Console.WriteLine("Press 1 to buy soda");
+            string choice = Console.ReadLine();
+            if(choice == "1")
+            {
+                buyMenu();
+            }
+            
+        }
+
+        public decimal buyMenu()
+        {
+            
+            Console.WriteLine("Press 1 to insert quarters, 2 to insert dimes, 3 to insert nickels, and 4 to insert pennies");
+            string choice = Console.ReadLine();
+            if(choice == "1")
+            {
+                int depositedQuarters = addQuarters();
+                decimal quarterWorth = 0.25m;
+                decimal depositedQuartersValue = (depositedQuarters * quarterWorth);
+                deposit += depositedQuartersValue;
+                Console.WriteLine("Total inserted: " + deposit);
+                Console.WriteLine("Press 1 to add more money");
+                string addMoreMoneyChoice = Console.ReadLine();
+                    if (addMoreMoneyChoice == "1")
+
+                    {
+                    buyMenu();
+                    }
+
+                return depositedQuartersValue;
+
+            }
+
+            else if(choice == "2")
+
+            {
+
+                int depositedDimes = addDimes();
+                decimal dimeWorth = 0.10m;
+                decimal depositedDimesValue = (depositedDimes * dimeWorth);
+                deposit += depositedDimesValue;
+                Console.WriteLine("Total inserted: " + deposit);
+                Console.WriteLine("Press 1 to add more money");
+                string addMoreMoneyChoice = Console.ReadLine();
+                    if (addMoreMoneyChoice == "1")
+
+                {
+                    buyMenu();
+                }
+
+                return depositedDimesValue;
+
+            }
+
+
+
+            else if (choice == "3")
+
+            {
+                int depositedNickels = addNickels();
+                decimal nickelWorth = 0.05m;
+                decimal depositedNickelsValue = (depositedNickels * nickelWorth);
+                deposit += depositedNickelsValue;
+                Console.WriteLine("Total inserted: " + deposit);
+                Console.WriteLine("Press 1 to add more money");
+                string addMoreMoneyChoice = Console.ReadLine();
+                if (addMoreMoneyChoice == "1")
+
+                {
+                    buyMenu();
+                }
+
+                return depositedNickelsValue;
+            }
+
+            else if (choice == "4")
+            {
+
+                int depositedPennies = addPennies();
+                decimal pennyWorth = 0.01m;
+                decimal depositedPenniesValue = (depositedPennies * pennyWorth);
+                deposit += depositedPenniesValue;
+                Console.WriteLine("Total inserted: " + deposit);
+                Console.WriteLine("Press 1 to add more money");
+                string addMoreMoneyChoice = Console.ReadLine();
+                if (addMoreMoneyChoice == "1")
+
+                {
+                    buyMenu();
+                }
+
+                return depositedPenniesValue;
+
+            }
+
+            else
+
+            {
+                Console.WriteLine("That is not a valid option in this menu");
+                buyMenu();
+                
+            }
+
+            return 0;
+        }
+     
         public List<Quarter> stockQuarters()
         {
 
@@ -35,6 +149,9 @@ namespace SodaMachine
 
                 Quarter quarter = new Quarter();
                 quarters.Add(quarter);
+                coins.Add(quarter);
+
+               // depositedCoins.Add(quarter);
 
             }
 
@@ -49,6 +166,7 @@ namespace SodaMachine
 
                 Dime dime = new Dime();
                 dimes.Add(dime);
+                coins.Add(dime);
 
             }
 
@@ -63,6 +181,7 @@ namespace SodaMachine
 
                 Nickel nickel = new Nickel();
                 nickels.Add(nickel);
+                coins.Add(nickel);
 
             }
 
@@ -76,7 +195,7 @@ namespace SodaMachine
 
                 Penny penny = new Penny();
                 pennies.Add(penny);
-
+                coins.Add(penny);
             }
 
             return pennies;
@@ -90,6 +209,8 @@ namespace SodaMachine
 
                 Orange orange = new Orange();
                 oranges.Add(orange);
+                sodas.Add(orange);
+
 
             }
 
@@ -102,8 +223,10 @@ namespace SodaMachine
             for (int grapeAmount = 0; grapeAmount < 20; grapeAmount++)
             {
 
+
                 Grape grape = new Grape();
                 grapes.Add(grape);
+                sodas.Add(grape);
 
             }
 
@@ -118,6 +241,7 @@ namespace SodaMachine
 
                 Meat meat = new Meat();
                 meats.Add(meat);
+                sodas.Add(meat);
 
             }
 
@@ -133,8 +257,143 @@ namespace SodaMachine
             {
                 Orange orange = new Orange();
                 oranges.Add(orange);
+                sodas.Add(orange);
             }
         }
+        public void addGrape()
+        {
+            Console.WriteLine("How many grape sodas are you putting in the machine?");
+            int addition = int.Parse(Console.ReadLine());
+
+            for (int newGrapes = 0; newGrapes < addition; newGrapes++)
+
+            {
+                Grape grape = new Grape();
+                grapes.Add(grape);
+                sodas.Add(grape);
+            }
+        }
+
+        public void addMeat()
+        {
+            Console.WriteLine("How many meat sodas are you putting in the machine?");
+            int addition = int.Parse(Console.ReadLine());
+
+            for (int newMeats = 0; newMeats < addition; newMeats++)
+
+            {
+                Meat meat = new Meat();
+                meats.Add(meat);
+                sodas.Add(meat);
+            }
+        }
+
+        public int addQuarters()
+        {
+            Console.WriteLine("How many quarters are you putting in the machine?");
+            int addition = int.Parse(Console.ReadLine());
+
+            for (int newQuarters = 0; newQuarters < addition; newQuarters++)
+
+            {
+                Quarter quarter = new Quarter();
+                quarters.Add(quarter);
+                coins.Add(quarter);
+            }
+
+            return addition;
+        }
+        public int addDimes()
+        {
+            Console.WriteLine("How many dimes are you putting in the machine?");
+            int addition = int.Parse(Console.ReadLine());
+
+            for (int newdimes = 0; newdimes < addition; newdimes++)
+
+            {
+                Dime dime = new Dime();
+                dimes.Add(dime);
+                coins.Add(dime);
+            }
+
+            return addition;
+        }
+        public int addNickels()
+        {
+            Console.WriteLine("How many nickels are you putting in the machine?");
+            int addition = int.Parse(Console.ReadLine());
+
+            for (int newNickels = 0; newNickels < addition; newNickels++)
+
+            {
+                Nickel nickel = new Nickel();
+                nickels.Add(nickel);
+                coins.Add(nickel);
+            }
+
+            return addition;
+        }
+
+        public int addPennies()
+        {
+            Console.WriteLine("How many pennies are you putting in the machine?");
+            int addition = int.Parse(Console.ReadLine());
+
+            for (int newPennies = 0; newPennies < addition; newPennies++)
+
+            {
+                Penny penny = new Penny();
+                pennies.Add(penny);
+                coins.Add(penny);
+            }
+
+            return addition;
+        }
+
+
+        //public void getMenu()
+        //{
+            
+        //}
+
+        //public decimal collectMoney(List<Coin> coin)
+        //{
+
+            
+        //    Console.WriteLine("Press 1 to buy soda");
+        //    int menuChoice = 0;
+
+        //    try
+        //    {
+
+        //        menuChoice = int.Parse(Console.ReadLine());
+
+        //    }
+        //    catch (FormatException)
+        //    {
+        //        Console.WriteLine("That is not a valid option in this menu.");
+        //        getMenu();
+
+        //    }
+        //    if (menuChoice == 1)
+        //    {
+
+        //        int depositedQuarters = addQuarters();
+        //        decimal quarterWorth = 0.25m;
+        //        decimal depositedQuartersValue = (depositedQuarters * quarterWorth);
+        //        Console.WriteLine("Total inserted: " + depositedQuartersValue);
+        //        return depositedQuartersValue;
+        //    }
+
+        //    else
+
+        //    {
+        //        return 0;
+        //    }
+        //}
+
+
+
     }
 }
 
