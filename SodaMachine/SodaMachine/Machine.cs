@@ -8,6 +8,7 @@ namespace SodaMachine
 {
    class Machine
     {
+        
         List<Quarter> quarters = new List<Quarter>();
         List<Dime> dimes = new List<Dime>();
         List<Nickel> nickels = new List<Nickel>();
@@ -17,7 +18,9 @@ namespace SodaMachine
         List<Meat> meats = new List<Meat>();
         List<Coin> coins = new List<Coin>();
         List<Soda> sodas = new List<Soda>();
+        List<Coin> depositedCoins = new List<Coin>();
         decimal deposit = 0m;
+        
 
 
 
@@ -35,15 +38,24 @@ namespace SodaMachine
 
         public void runMenu()
         {
-            Console.WriteLine("Press 1 to buy soda");
+            Console.WriteLine("Press 1 to intert money, press 2 to make a selection.");
             string choice = Console.ReadLine();
             if(choice == "1")
             {
                 buyMenu();
             }
 
-            else
+            else if (choice == "2")
 
+            {
+
+                sodaMenu();
+
+            }
+
+
+            else
+     
             {
                 Console.WriteLine("That is not a valid option in this menu.");
                 runMenu();
@@ -90,7 +102,7 @@ namespace SodaMachine
                 decimal depositedDimesValue = (depositedDimes * dimeWorth);
                 deposit += depositedDimesValue;
                 Console.WriteLine("Total inserted: " + deposit);
-                Console.WriteLine("Press 1 to add more money");
+                Console.WriteLine("Press 1 to add more money, press any other key to return to main menu.");
                 string addMoreMoneyChoice = Console.ReadLine();
                 if (addMoreMoneyChoice == "1")
 
@@ -98,6 +110,13 @@ namespace SodaMachine
                     buyMenu();
                 }
 
+                else
+
+                {
+                    runMenu();
+                }
+
+                
                 return depositedDimesValue;
 
             }
@@ -112,12 +131,18 @@ namespace SodaMachine
                 decimal depositedNickelsValue = (depositedNickels * nickelWorth);
                 deposit += depositedNickelsValue;
                 Console.WriteLine("Total inserted: " + deposit);
-                Console.WriteLine("Press 1 to add more money");
+                Console.WriteLine("Press 1 to add more money, press any other key to return to main menu.");
                 string addMoreMoneyChoice = Console.ReadLine();
                 if (addMoreMoneyChoice == "1")
 
                 {
                     buyMenu();
+                }
+
+                else
+
+                {
+                    runMenu();
                 }
 
                 return depositedNickelsValue;
@@ -131,12 +156,18 @@ namespace SodaMachine
                 decimal depositedPenniesValue = (depositedPennies * pennyWorth);
                 deposit += depositedPenniesValue;
                 Console.WriteLine("Total inserted: " + deposit);
-                Console.WriteLine("Press 1 to add more money");
+                Console.WriteLine("Press 1 to add more money, press any other key to return to main menu.");
                 string addMoreMoneyChoice = Console.ReadLine();
                 if (addMoreMoneyChoice == "1")
 
                 {
                     buyMenu();
+                }
+
+                else
+
+                {
+                    runMenu();
                 }
 
                 return depositedPenniesValue;
@@ -151,6 +182,7 @@ namespace SodaMachine
                  return 0;
             }
 
+
             else
 
             {
@@ -163,7 +195,7 @@ namespace SodaMachine
             
         }
      
-        public List<Quarter> stockQuarters()
+        public List<Quarter>stockQuarters()
         {
 
             for (int quarterAmount = 0; quarterAmount < 20; quarterAmount++)
@@ -189,6 +221,7 @@ namespace SodaMachine
                 Dime dime = new Dime();
                 dimes.Add(dime);
                 coins.Add(dime);
+                
 
             }
 
@@ -328,7 +361,7 @@ namespace SodaMachine
                     buyMenu();
 
               }
-           // int addition = int.Parse(Console.ReadLine());
+           
 
             for (int newQuarters = 0; newQuarters < addition; newQuarters++)
 
@@ -336,6 +369,7 @@ namespace SodaMachine
                 Quarter quarter = new Quarter();
                 quarters.Add(quarter);
                 coins.Add(quarter);
+                depositedCoins.Add(quarter);
             }
 
             return addition;
@@ -351,6 +385,7 @@ namespace SodaMachine
                 Dime dime = new Dime();
                 dimes.Add(dime);
                 coins.Add(dime);
+                depositedCoins.Add(dime);
             }
 
             return addition;
@@ -366,6 +401,7 @@ namespace SodaMachine
                 Nickel nickel = new Nickel();
                 nickels.Add(nickel);
                 coins.Add(nickel);
+                depositedCoins.Add(nickel);
             }
 
             return addition;
@@ -382,10 +418,57 @@ namespace SodaMachine
                 Penny penny = new Penny();
                 pennies.Add(penny);
                 coins.Add(penny);
+                depositedCoins.Add(penny);
             }
 
             return addition;
         }
+
+        public void sellGrape()
+        {
+
+            if ((grapes.Count > 0) && (deposit >= .60m))
+               
+            {
+                
+                deposit = 0m;
+                depositedCoins.Clear();
+                foreach (Grape grape in grapes)
+                {
+                    grapes.Remove(grape);
+                    break;
+                }
+                foreach (Soda grape in sodas)
+                {
+                    sodas.Remove(grape);
+                    break;
+                }
+
+
+            }
+
+            else
+            {
+                Console.WriteLine("Cannot complete transaction");
+
+            }
+        }
+
+        public void sodaMenu()
+
+        {
+
+            Console.WriteLine("Press 1 for grape (.60), press 2 for orange (.35), press 3 for meat (.06)");
+            string choice = Console.ReadLine();
+
+            if (choice == "1")
+
+            {
+                sellGrape();
+            }
+        }
+
+
 
 
         //public void getMenu()
