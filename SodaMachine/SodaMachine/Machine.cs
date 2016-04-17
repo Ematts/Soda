@@ -19,6 +19,10 @@ namespace SodaMachine
         List<Coin> coins = new List<Coin>();
         List<Soda> sodas = new List<Soda>();
         List<Coin> depositedCoins = new List<Coin>();
+        List<Quarter> depositedQuarters = new List<Quarter>();
+        List<Dime> depositedDimes = new List<Dime>();
+        List<Nickel> depositedNickels = new List<Nickel>();
+        List<Penny> depositedPennies = new List<Penny>();
         decimal deposit = 0m;
         
 
@@ -36,9 +40,23 @@ namespace SodaMachine
         }
 
 
+
+
+        public decimal getMachineTotalChange()
+        {
+            decimal totalChange = (quarters.Count * .25m) + (dimes.Count * .10m) + (nickels.Count * .05m) + (pennies.Count * .01m);
+            Console.WriteLine("Quarters in machine = " + quarters.Count);
+            Console.WriteLine("Dimes in machine = " + dimes.Count);
+            Console.WriteLine("Nickels in machine = " + nickels.Count);
+            Console.WriteLine("Pennies in machine = " + pennies.Count);
+            Console.WriteLine("Total money = $" + totalChange);
+
+            return totalChange;
+        }
+
         public void runMenu()
         {
-            Console.WriteLine("Press 1 to intert money, press 2 to make a selection.");
+            Console.WriteLine("Press 1 to insert money, press 2 to make a selection.");
             string choice = Console.ReadLine();
             if(choice == "1")
             {
@@ -66,7 +84,7 @@ namespace SodaMachine
         public decimal buyMenu()
         {
 
-            Console.WriteLine("Press 1 to insert quarters, 2 to insert dimes, 3 to insert nickels, 4 to insert pennies, or 5 to return to main menu.");
+            Console.WriteLine("Press 1 to insert quarters, 2 to insert dimes, 3 to insert nickels, 4 to insert pennies, 5 to return to main menu, or 6 to exit.");
             string choice = Console.ReadLine();
             if (choice == "1")
             {
@@ -182,6 +200,17 @@ namespace SodaMachine
                  return 0;
             }
 
+            else if (choice == "6")
+            {
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                Environment.Exit(0);
+                return 0;
+            }
 
             else
 
@@ -367,9 +396,8 @@ namespace SodaMachine
 
             {
                 Quarter quarter = new Quarter();
-                quarters.Add(quarter);
-                coins.Add(quarter);
                 depositedCoins.Add(quarter);
+                depositedQuarters.Add(quarter);
             }
 
             return addition;
@@ -377,15 +405,28 @@ namespace SodaMachine
         public int addDimes()
         {
             Console.WriteLine("How many dimes are you putting in the machine?");
-            int addition = int.Parse(Console.ReadLine());
+            int addition = 0;
+
+            try
+
+            {
+
+                addition = int.Parse(Console.ReadLine());
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("That is not a valid option in this menu.");
+                buyMenu();
+
+            }
 
             for (int newdimes = 0; newdimes < addition; newdimes++)
 
             {
                 Dime dime = new Dime();
-                dimes.Add(dime);
-                coins.Add(dime);
                 depositedCoins.Add(dime);
+                depositedDimes.Add(dime);
             }
 
             return addition;
@@ -393,15 +434,28 @@ namespace SodaMachine
         public int addNickels()
         {
             Console.WriteLine("How many nickels are you putting in the machine?");
-            int addition = int.Parse(Console.ReadLine());
+            int addition = 0;
+
+            try
+
+            {
+
+                addition = int.Parse(Console.ReadLine());
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("That is not a valid option in this menu.");
+                buyMenu();
+
+            }
 
             for (int newNickels = 0; newNickels < addition; newNickels++)
 
             {
                 Nickel nickel = new Nickel();
-                nickels.Add(nickel);
-                coins.Add(nickel);
                 depositedCoins.Add(nickel);
+                depositedNickels.Add(nickel);
             }
 
             return addition;
@@ -410,15 +464,28 @@ namespace SodaMachine
         public int addPennies()
         {
             Console.WriteLine("How many pennies are you putting in the machine?");
-            int addition = int.Parse(Console.ReadLine());
+            int addition = 0;
+
+            try
+
+            {
+
+                addition = int.Parse(Console.ReadLine());
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("That is not a valid option in this menu.");
+                buyMenu();
+
+            }
 
             for (int newPennies = 0; newPennies < addition; newPennies++)
 
             {
                 Penny penny = new Penny();
-                pennies.Add(penny);
-                coins.Add(penny);
                 depositedCoins.Add(penny);
+                depositedPennies.Add(penny);
             }
 
             return addition;
@@ -427,12 +494,40 @@ namespace SodaMachine
         public void sellGrape()
         {
 
-            if ((grapes.Count > 0) && (deposit >= .60m))
+            if ((grapes.Count > 0) && (deposit == .60m))
                
             {
-                
+                foreach (Coin coin in depositedCoins)
+                {
+                    coins.Add(coin);
+                }
+
+                foreach (Quarter quarter in depositedQuarters)
+                {
+                    quarters.Add(quarter);
+                }
+
+                foreach (Dime dime in depositedDimes)
+                {
+                    dimes.Add(dime);
+                }
+
+                foreach (Nickel nickel in depositedNickels)
+                {
+                    nickels.Add(nickel);
+                }
+
+                foreach (Penny penny in depositedPennies)
+                {
+                    pennies.Add(penny);
+                }
+
                 deposit = 0m;
                 depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
                 foreach (Grape grape in grapes)
                 {
                     grapes.Remove(grape);
@@ -444,7 +539,39 @@ namespace SodaMachine
                     break;
                 }
 
+                Console.WriteLine("Grape soda dispensed.  Change returned = 0");
 
+                getMachineTotalChange();
+
+                Console.WriteLine("Remaining grape sodas = " + grapes.Count);
+                runMenu();
+
+            }
+
+            else if (deposit < .60m)
+            {
+                Console.WriteLine("You have not inserted enough money.  The money you inserted has been returned");
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                buyMenu();
+
+            }
+
+            else if (grapes.Count < 1)
+
+            {
+                Console.WriteLine("Grape soda is sold out.  The money you inserted has been returned");
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                buyMenu();
             }
 
             else
