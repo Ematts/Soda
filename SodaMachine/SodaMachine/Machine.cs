@@ -280,7 +280,7 @@ namespace SodaMachine
         public List<Penny> stockPennies()
         { 
 
-            for (int pennyAmount = 0; pennyAmount < 3; pennyAmount++)
+            for (int pennyAmount = 0; pennyAmount < 50; pennyAmount++)
             {
 
                 Penny penny = new Penny();
