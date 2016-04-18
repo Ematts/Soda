@@ -23,7 +23,12 @@ namespace SodaMachine
         List<Dime> depositedDimes = new List<Dime>();
         List<Nickel> depositedNickels = new List<Nickel>();
         List<Penny> depositedPennies = new List<Penny>();
+        List<Quarter> returnQuarters = new List<Quarter>();
+        List<Dime> returnDimes = new List<Dime>();
+        List<Nickel> returnNickels = new List<Nickel>();
+        List<Penny> returnPennies = new List<Penny>();
         decimal deposit = 0m;
+        
         
 
 
@@ -37,6 +42,7 @@ namespace SodaMachine
             oranges = stockOranges();
             grapes = stockGrapes();
             meats = stockMeats();
+            
         }
 
 
@@ -574,12 +580,378 @@ namespace SodaMachine
                 buyMenu();
             }
 
+            else if ((grapes.Count > 0) && (deposit > .60m))
+            {
+                foreach (Coin coin in depositedCoins)
+                {
+                    coins.Add(coin);
+                }
+
+                foreach (Quarter quarter in depositedQuarters)
+                {
+                    quarters.Add(quarter);
+                }
+
+                foreach (Dime dime in depositedDimes)
+                {
+                    dimes.Add(dime);
+                }
+
+                foreach (Nickel nickel in depositedNickels)
+                {
+                    nickels.Add(nickel);
+                }
+
+                foreach (Penny penny in depositedPennies)
+                {
+                    pennies.Add(penny);
+                }
+
+                returnGrapeChange();
+
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                foreach (Grape grape in grapes)
+                {
+                    grapes.Remove(grape);
+                    break;
+                }
+                foreach (Soda grape in sodas)
+                {
+                    sodas.Remove(grape);
+                    break;
+                }
+
+                Console.WriteLine("Grape soda dispensed.");
+
+                getMachineTotalChange();
+
+                Console.WriteLine("Remaining grape sodas = " + grapes.Count);
+                returnQuarters.Clear();
+                returnDimes.Clear();
+                returnNickels.Clear();
+                returnPennies.Clear();
+                runMenu();
+
+
+
+            }
             else
+
+
             {
                 Console.WriteLine("Cannot complete transaction");
 
             }
         }
+        public void sellOrange()
+        {
+
+            if ((oranges.Count > 0) && (deposit == .35m))
+
+            {
+                foreach (Coin coin in depositedCoins)
+                {
+                    coins.Add(coin);
+                }
+
+                foreach (Quarter quarter in depositedQuarters)
+                {
+                    quarters.Add(quarter);
+                }
+
+                foreach (Dime dime in depositedDimes)
+                {
+                    dimes.Add(dime);
+                }
+
+                foreach (Nickel nickel in depositedNickels)
+                {
+                    nickels.Add(nickel);
+                }
+
+                foreach (Penny penny in depositedPennies)
+                {
+                    pennies.Add(penny);
+                }
+
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                foreach (Orange orange in oranges)
+                {
+                    oranges.Remove(orange);
+                    break;
+                }
+                foreach (Soda orange in sodas)
+                {
+                    sodas.Remove(orange);
+                    break;
+                }
+
+                Console.WriteLine("Orange soda dispensed.  Change returned = 0");
+
+                getMachineTotalChange();
+
+                Console.WriteLine("Remaining orange sodas = " + oranges.Count);
+                runMenu();
+
+            }
+
+            else if (deposit < .35m)
+            {
+                Console.WriteLine("You have not inserted enough money.  The money you inserted has been returned");
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                buyMenu();
+
+            }
+
+            else if (oranges.Count < 1)
+
+            {
+                Console.WriteLine("Orange soda is sold out.  The money you inserted has been returned");
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                buyMenu();
+            }
+
+            else if ((oranges.Count > 0) && (deposit > .35m))
+            {
+                foreach (Coin coin in depositedCoins)
+                {
+                    coins.Add(coin);
+                }
+
+                foreach (Quarter quarter in depositedQuarters)
+                {
+                    quarters.Add(quarter);
+                }
+
+                foreach (Dime dime in depositedDimes)
+                {
+                    dimes.Add(dime);
+                }
+
+                foreach (Nickel nickel in depositedNickels)
+                {
+                    nickels.Add(nickel);
+                }
+
+                foreach (Penny penny in depositedPennies)
+                {
+                    pennies.Add(penny);
+                }
+
+                returnOrangeChange();
+
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                foreach (Orange orange in oranges)
+                {
+                    oranges.Remove(orange);
+                    break;
+                }
+                foreach (Soda orange in sodas)
+                {
+                    sodas.Remove(orange);
+                    break;
+                }
+
+                Console.WriteLine("Orange soda dispensed.");
+
+                getMachineTotalChange();
+
+                Console.WriteLine("Remaining orange sodas = " + oranges.Count);
+                returnQuarters.Clear();
+                returnDimes.Clear();
+                returnNickels.Clear();
+                returnPennies.Clear();
+                runMenu();
+
+
+
+            }
+            else
+
+
+            {
+                Console.WriteLine("Cannot complete transaction");
+
+            }
+        }
+
+        public void sellMeat()
+        {
+
+            if ((grapes.Count > 0) && (deposit == .06m))
+
+            {
+                foreach (Coin coin in depositedCoins)
+                {
+                    coins.Add(coin);
+                }
+
+                foreach (Quarter quarter in depositedQuarters)
+                {
+                    quarters.Add(quarter);
+                }
+
+                foreach (Dime dime in depositedDimes)
+                {
+                    dimes.Add(dime);
+                }
+
+                foreach (Nickel nickel in depositedNickels)
+                {
+                    nickels.Add(nickel);
+                }
+
+                foreach (Penny penny in depositedPennies)
+                {
+                    pennies.Add(penny);
+                }
+
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                foreach (Meat meat in meats)
+                {
+                    meats.Remove(meat);
+                    break;
+                }
+                foreach (Soda meat in sodas)
+                {
+                    sodas.Remove(meat);
+                    break;
+                }
+
+                Console.WriteLine("Meat soda dispensed.  Change returned = 0");
+
+                getMachineTotalChange();
+
+                Console.WriteLine("Remaining meat sodas = " + meats.Count);
+                runMenu();
+
+            }
+
+            else if (deposit < .06m)
+            {
+                Console.WriteLine("You have not inserted enough money.  The money you inserted has been returned");
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                buyMenu();
+
+            }
+
+            else if (meats.Count < 1)
+
+            {
+                Console.WriteLine("Meat soda is sold out.  The money you inserted has been returned");
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                buyMenu();
+            }
+
+            else if ((meats.Count > 0) && (deposit > .06m))
+            {
+                foreach (Coin coin in depositedCoins)
+                {
+                    coins.Add(coin);
+                }
+
+                foreach (Quarter quarter in depositedQuarters)
+                {
+                    quarters.Add(quarter);
+                }
+
+                foreach (Dime dime in depositedDimes)
+                {
+                    dimes.Add(dime);
+                }
+
+                foreach (Nickel nickel in depositedNickels)
+                {
+                    nickels.Add(nickel);
+                }
+
+                foreach (Penny penny in depositedPennies)
+                {
+                    pennies.Add(penny);
+                }
+
+                returnMeatChange();
+
+                deposit = 0m;
+                depositedCoins.Clear();
+                depositedQuarters.Clear();
+                depositedDimes.Clear();
+                depositedNickels.Clear();
+                depositedPennies.Clear();
+                foreach (Meat meat in meats)
+                {
+                    meats.Remove(meat);
+                    break;
+                }
+                foreach (Soda meat in sodas)
+                {
+                    sodas.Remove(meat);
+                    break;
+                }
+
+                Console.WriteLine("Meat soda dispensed.");
+
+                getMachineTotalChange();
+
+                Console.WriteLine("Remaining meat sodas = " + meats.Count);
+                returnQuarters.Clear();
+                returnDimes.Clear();
+                returnNickels.Clear();
+                returnPennies.Clear();
+                runMenu();
+
+
+
+            }
+            else
+
+
+            {
+                Console.WriteLine("Cannot complete transaction");
+
+            }
+        }
+
 
         public void sodaMenu()
 
@@ -593,53 +965,314 @@ namespace SodaMachine
             {
                 sellGrape();
             }
+
+            else if (choice == "2")
+            {
+                sellOrange();
+            }
+
+            else if (choice == "3")
+            {
+                sellMeat();
+            }
+
+            else
+            {
+                Console.WriteLine("That is not a valid option in this menu.");
+                sodaMenu();
+            }
         }
 
+        public void returnGrapeChange()
+        {
+            decimal grapeBalance = deposit - .60m;
+            Console.WriteLine("Return change = " + grapeBalance);
 
+            while (grapeBalance > 0m)
+            {
+                while ((grapeBalance >= .25m) && (quarters.Count > 0))
+                {
+                    foreach (Quarter quarter in quarters)
+                    {
+                        returnQuarters.Add(quarter);
 
+                        grapeBalance -= .25m;
 
-        //public void getMenu()
-        //{
+                        if (grapeBalance < .25m || quarters.Count < 1)
+                        {
+                            Console.WriteLine("Quarters returned = " + returnQuarters.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Quarter quarter in returnQuarters)
+                    {
+                        quarters.Remove(quarter);
+                        coins.Remove(quarter);
+                    }
+                    
+                }
+                while ((grapeBalance >= .10m) && (dimes.Count > 1))
+                {
+                    foreach (Dime dime in dimes)
+                    {
+                        returnDimes.Add(dime);
+
+                        grapeBalance -= .10m;
+
+                        if (grapeBalance < .10m || dimes.Count < 1)
+                        {
+                            Console.WriteLine("Dimes returned = " + returnDimes.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Dime dime in returnDimes)
+                    {
+                        dimes.Remove(dime);
+                        coins.Remove(dime);
+                    }
+                }
+                while ((grapeBalance >= .05m) && (nickels.Count > 1))
+                {
+                    foreach (Nickel nickel in nickels)
+                    {
+                        returnNickels.Add(nickel);
+
+                        grapeBalance -= .05m;
+
+                        if (grapeBalance < .05m || nickels.Count < 1)
+                        {
+                            Console.WriteLine("nickels returned = " + returnNickels.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Nickel nickel in returnNickels)
+                    {
+                        nickels.Remove(nickel);
+                        coins.Remove(nickel);
+                    }
+                }
+                while ((grapeBalance >= .01m) && (pennies.Count > 1))
+                {
+                    foreach (Penny penny in pennies)
+                    {
+                        returnPennies.Add(penny);
+
+                        grapeBalance -= .01m;
+
+                        if (grapeBalance < .01m || pennies.Count < 1)
+                        {
+                            Console.WriteLine("Pennies returned = " + returnPennies.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Penny penny in returnPennies)
+                    {
+                        pennies.Remove(penny);
+                        coins.Remove(penny);
+                    }
+                }
+
+            }
             
-        //}
+        }
 
-        //public decimal collectMoney(List<Coin> coin)
-        //{
+        public void returnOrangeChange()
+        {
+            decimal orangeBalance = deposit - .35m;
+            Console.WriteLine("Return change = " + orangeBalance);
 
-            
-        //    Console.WriteLine("Press 1 to buy soda");
-        //    int menuChoice = 0;
+            while (orangeBalance > 0m)
+            {
+                while ((orangeBalance >= .25m) && (quarters.Count > 0))
+                {
+                    foreach (Quarter quarter in quarters)
+                    {
+                        returnQuarters.Add(quarter);
 
-        //    try
-        //    {
+                        orangeBalance -= .25m;
 
-        //        menuChoice = int.Parse(Console.ReadLine());
+                        if (orangeBalance < .25m || quarters.Count < 1)
+                        {
+                            Console.WriteLine("Quarters returned = " + returnQuarters.Count);
+                            break;
+                        }
+                    }
 
-        //    }
-        //    catch (FormatException)
-        //    {
-        //        Console.WriteLine("That is not a valid option in this menu.");
-        //        getMenu();
+                    foreach (Quarter quarter in returnQuarters)
+                    {
+                        quarters.Remove(quarter);
+                        coins.Remove(quarter);
+                    }
 
-        //    }
-        //    if (menuChoice == 1)
-        //    {
+                }
+                while ((orangeBalance >= .10m) && (dimes.Count > 1))
+                {
+                    foreach (Dime dime in dimes)
+                    {
+                        returnDimes.Add(dime);
 
-        //        int depositedQuarters = addQuarters();
-        //        decimal quarterWorth = 0.25m;
-        //        decimal depositedQuartersValue = (depositedQuarters * quarterWorth);
-        //        Console.WriteLine("Total inserted: " + depositedQuartersValue);
-        //        return depositedQuartersValue;
-        //    }
+                        orangeBalance -= .10m;
 
-        //    else
+                        if (orangeBalance < .10m || dimes.Count < 1)
+                        {
+                            Console.WriteLine("Dimes returned = " + returnDimes.Count);
+                            break;
+                        }
+                    }
 
-        //    {
-        //        return 0;
-        //    }
-        //}
+                    foreach (Dime dime in returnDimes)
+                    {
+                        dimes.Remove(dime);
+                        coins.Remove(dime);
+                    }
+                }
+                while ((orangeBalance >= .05m) && (nickels.Count > 1))
+                {
+                    foreach (Nickel nickel in nickels)
+                    {
+                        returnNickels.Add(nickel);
 
+                        orangeBalance -= .05m;
 
+                        if (orangeBalance < .05m || nickels.Count < 1)
+                        {
+                            Console.WriteLine("nickels returned = " + returnNickels.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Nickel nickel in returnNickels)
+                    {
+                        nickels.Remove(nickel);
+                        coins.Remove(nickel);
+                    }
+                }
+                while ((orangeBalance >= .01m) && (pennies.Count > 1))
+                {
+                    foreach (Penny penny in pennies)
+                    {
+                        returnPennies.Add(penny);
+
+                        orangeBalance -= .01m;
+
+                        if (orangeBalance < .01m || pennies.Count < 1)
+                        {
+                            Console.WriteLine("Pennies returned = " + returnPennies.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Penny penny in returnPennies)
+                    {
+                        pennies.Remove(penny);
+                        coins.Remove(penny);
+                    }
+                }
+
+            }
+
+        }
+
+        public void returnMeatChange()
+        {
+            decimal meatBalance = deposit - .06m;
+            Console.WriteLine("Return change = " + meatBalance);
+
+            while (meatBalance > 0m)
+            {
+                while ((meatBalance >= .25m) && (quarters.Count > 0))
+                {
+                    foreach (Quarter quarter in quarters)
+                    {
+                        returnQuarters.Add(quarter);
+
+                        meatBalance -= .25m;
+
+                        if (meatBalance < .25m || quarters.Count < 1)
+                        {
+                            Console.WriteLine("Quarters returned = " + returnQuarters.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Quarter quarter in returnQuarters)
+                    {
+                        quarters.Remove(quarter);
+                        coins.Remove(quarter);
+                    }
+
+                }
+                while ((meatBalance >= .10m) && (dimes.Count > 1))
+                {
+                    foreach (Dime dime in dimes)
+                    {
+                        returnDimes.Add(dime);
+
+                        meatBalance -= .10m;
+
+                        if (meatBalance < .10m || dimes.Count < 1)
+                        {
+                            Console.WriteLine("Dimes returned = " + returnDimes.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Dime dime in returnDimes)
+                    {
+                        dimes.Remove(dime);
+                        coins.Remove(dime);
+                    }
+                }
+                while ((meatBalance >= .05m) && (nickels.Count > 1))
+                {
+                    foreach (Nickel nickel in nickels)
+                    {
+                        returnNickels.Add(nickel);
+
+                        meatBalance -= .05m;
+
+                        if (meatBalance < .05m || nickels.Count < 1)
+                        {
+                            Console.WriteLine("nickels returned = " + returnNickels.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Nickel nickel in returnNickels)
+                    {
+                        nickels.Remove(nickel);
+                        coins.Remove(nickel);
+                    }
+                }
+                while ((meatBalance >= .01m) && (pennies.Count > 1))
+                {
+                    foreach (Penny penny in pennies)
+                    {
+                        returnPennies.Add(penny);
+
+                        meatBalance -= .01m;
+
+                        if (meatBalance < .01m || pennies.Count < 1)
+                        {
+                            Console.WriteLine("Pennies returned = " + returnPennies.Count);
+                            break;
+                        }
+                    }
+
+                    foreach (Penny penny in returnPennies)
+                    {
+                        pennies.Remove(penny);
+                        coins.Remove(penny);
+                    }
+                }
+
+            }
+
+        }
 
     }
 }
