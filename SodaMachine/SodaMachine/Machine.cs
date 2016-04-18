@@ -280,7 +280,7 @@ namespace SodaMachine
         public List<Penny> stockPennies()
         { 
 
-            for (int pennyAmount = 0; pennyAmount < 50; pennyAmount++)
+            for (int pennyAmount = 0; pennyAmount < 3; pennyAmount++)
             {
 
                 Penny penny = new Penny();
@@ -582,6 +582,8 @@ namespace SodaMachine
 
             else if ((grapes.Count > 0) && (deposit > .60m))
             {
+                
+
                 foreach (Coin coin in depositedCoins)
                 {
                     coins.Add(coin);
@@ -733,6 +735,8 @@ namespace SodaMachine
 
             else if ((oranges.Count > 0) && (deposit > .35m))
             {
+                
+
                 foreach (Coin coin in depositedCoins)
                 {
                     coins.Add(coin);
@@ -885,6 +889,8 @@ namespace SodaMachine
 
             else if ((meats.Count > 0) && (deposit > .06m))
             {
+                
+
                 foreach (Coin coin in depositedCoins)
                 {
                     coins.Add(coin);
@@ -1074,6 +1080,41 @@ namespace SodaMachine
                         pennies.Remove(penny);
                         coins.Remove(penny);
                     }
+
+                    if ((grapeBalance > 0m) && (pennies.Count < 1))
+                    {
+                        foreach (Quarter quarter in depositedQuarters)
+                        {
+                            quarters.Remove(quarter);
+                        }
+
+                        foreach (Dime dime in depositedDimes)
+                        {
+                            dimes.Remove(dime);
+                        }
+
+                        foreach (Nickel nickel in depositedNickels)
+                        {
+                            nickels.Remove(nickel);
+                        }
+
+                        foreach (Penny penny in depositedPennies)
+                        {
+                            pennies.Remove(penny);
+                        }
+
+                        Console.WriteLine("There is not enough change to complete transaction.  The coins you have inserted have been returned.");
+                        getMachineTotalChange();
+                        Console.WriteLine("Remaining grape sodas = " + grapes.Count);
+                        deposit = 0m;
+                        depositedCoins.Clear();
+                        depositedQuarters.Clear();
+                        depositedDimes.Clear();
+                        depositedNickels.Clear();
+                        depositedPennies.Clear();
+                        runMenu();
+
+                    }
                 }
 
             }
@@ -1171,6 +1212,42 @@ namespace SodaMachine
                         pennies.Remove(penny);
                         coins.Remove(penny);
                     }
+                    if ((orangeBalance > 0m) && (pennies.Count < 1))
+
+                    {
+
+                        foreach (Quarter quarter in depositedQuarters)
+                        {
+                            quarters.Remove(quarter);
+                        }
+
+                        foreach (Dime dime in depositedDimes)
+                        {
+                            dimes.Remove(dime);
+                        }
+
+                        foreach (Nickel nickel in depositedNickels)
+                        {
+                            nickels.Remove(nickel);
+                        }
+
+                        foreach (Penny penny in depositedPennies)
+                        {
+                            pennies.Remove(penny);
+                        }
+
+                        Console.WriteLine("There is not enough change to complete transaction.  The coins you have inserted have been returned.");
+                        getMachineTotalChange();
+                        Console.WriteLine("Remaining orange sodas = " + oranges.Count);
+                        deposit = 0m;
+                        depositedCoins.Clear();
+                        depositedQuarters.Clear();
+                        depositedDimes.Clear();
+                        depositedNickels.Clear();
+                        depositedPennies.Clear();
+                        runMenu();
+
+                    }
                 }
 
             }
@@ -1180,7 +1257,7 @@ namespace SodaMachine
         public void returnMeatChange()
         {
             decimal meatBalance = deposit - .06m;
-            Console.WriteLine("Return change = " + meatBalance);
+            Console.WriteLine("Return change due = " + meatBalance);
 
             while (meatBalance > 0m)
             {
@@ -1256,23 +1333,63 @@ namespace SodaMachine
 
                         meatBalance -= .01m;
 
-                        if (meatBalance < .01m || pennies.Count < 1)
+                        if (meatBalance < .01m)
                         {
                             Console.WriteLine("Pennies returned = " + returnPennies.Count);
                             break;
                         }
+
+
+
                     }
+
 
                     foreach (Penny penny in returnPennies)
                     {
                         pennies.Remove(penny);
                         coins.Remove(penny);
                     }
+
                 }
 
-            }
+                if ((meatBalance > 0m) && (pennies.Count < 1))
+                {
+                    foreach (Quarter quarter in depositedQuarters)
+                    {
+                        quarters.Remove(quarter);
+                    }
 
-        }
+                    foreach (Dime dime in depositedDimes)
+                    {
+                        dimes.Remove(dime);
+                    }
+
+                    foreach (Nickel nickel in depositedNickels)
+                    {
+                        nickels.Remove(nickel);
+                    }
+
+                    foreach (Penny penny in depositedPennies)
+                    {
+                        pennies.Remove(penny);
+                    }
+
+                    Console.WriteLine("There is not enough change to complete transaction.  The coins you have inserted have been returned.");
+                    getMachineTotalChange();
+                    Console.WriteLine("Remaining meat sodas = " + meats.Count);
+                    deposit = 0m;
+                    depositedCoins.Clear();
+                    depositedQuarters.Clear();
+                    depositedDimes.Clear();
+                    depositedNickels.Clear();
+                    depositedPennies.Clear();
+                    runMenu();
+
+                }
+
+
+            }
+        } 
 
     }
 }
